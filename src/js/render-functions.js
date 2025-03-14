@@ -6,6 +6,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader-wrapper');
+export const loadBtn = document.querySelector('.load-btn');
 
 export let galleryOpen = new SimpleLightbox('.gallery a', {
   captions: true,
@@ -60,11 +61,17 @@ export function clearGallery() {
 }
 
 export function showLoader() {
-  console.log('Лоадер показано');
   loader.style.display = 'block';
 }
 
 export function hideLoader() {
-  console.log('Лоадер приховано');
   loader.style.display = 'none';
+}
+
+export function showLoadButton() {
+  loadBtn.classList.add('active'); // клас, який розкриває кнопку
+}
+
+export function hideLoadButton() {
+  loadBtn.classList.remove('active');
 }

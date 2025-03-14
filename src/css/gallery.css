@@ -35,6 +35,38 @@ body {
 .search-btn:focus {
   background: #6c8cff;
 }
+.load-btn {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+.load-btn.active {
+  position: static;
+  width: auto;
+  overflow: visible;
+  margin: 0 auto 24px;
+  display: block;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: none;
+  height: 40px;
+  background: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.load-btn.active:hover,
+.load-btn.active:focus {
+  background: #6c8cff;
+}
 .form-input {
   outline: transparent;
   width: 272px;
@@ -113,36 +145,53 @@ h4 {
 }
 
 .loader-wrapper {
-  position: fixed;
-  opacity: 1;
-  top: 70%;
+  position: absolute;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
+  opacity: 1;
   display: none;
 }
 .loader {
-  display: block;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #f7f311;
+  display: inline-block;
+  text-align: center;
+  line-height: 86px;
+  text-align: center;
   position: relative;
+  padding: 0 40px;
+  font-size: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #10800ca2;
 }
 .loader:before,
 .loader:after {
   content: '';
+  display: block;
+  width: 15px;
+  height: 15px;
+  background: currentColor;
   position: absolute;
-  border-radius: 50%;
-  inset: 0;
-  background: #0652c5;
-  transform: rotate(0deg) translate(30px);
-  animation: rotate 1s ease infinite;
+  animation: load 0.7s infinite alternate ease-in-out;
+  top: 0;
 }
 .loader:after {
-  animation-delay: 0.1s;
+  top: auto;
+  bottom: 0;
 }
-@keyframes rotate {
+@keyframes load {
+  0% {
+    left: 0;
+    height: 43px;
+    width: 15px;
+    transform: translateX(0);
+  }
+  50% {
+    height: 10px;
+    width: 40px;
+  }
   100% {
-    transform: rotate(360deg) translate(30px);
+    left: 100%;
+    height: 43px;
+    width: 15px;
+    transform: translateX(-100%);
   }
 }
