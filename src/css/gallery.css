@@ -144,15 +144,12 @@ h4 {
   transform: scale(1.05);
 }
 
-.loader-wrapper {
+.loader {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   opacity: 1;
   display: none;
-}
-.loader {
-  display: inline-block;
   text-align: center;
   line-height: 86px;
   text-align: center;
