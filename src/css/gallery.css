@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -80,11 +83,11 @@ body {
   border-radius: 4px;
   background: #fff;
 }
-.form-input:hover,
-.form-input:focus {
+.form-input:hover {
   border-color: #000;
 }
-.form-input:active {
+.form-input:active,
+.form-input:focus {
   border-color: #4e75ff;
 }
 .gallery {

@@ -70,21 +70,33 @@ searchForm.addEventListener('submit', async event => {
 });
 
 loadBtn.addEventListener('click', async () => {
-  loadBtn.style.display = 'none';
+  hideLoadButton();
   showLoader();
 
   try {
     const data = await fetchImages(currentQuery, page, perPage);
-    hideLoader();
-
     renderGallery(data.hits);
     galleryOpen.refresh();
     page += 1;
 
-    if (page > Math.ceil(data.totalHits / perPage)) {
-      hideLoadButton();
+    const { height: cardHeight } = document
+      .querySelector('.gallery-item')
+      .getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
+
+    if (page * perPage < data.totalHits) {
+      showLoadButton();
     } else {
-      loadBtn.style.display = 'block';
+      hideLoadButton();
+      iziToast.info({
+        title: 'End of results',
+        message: 'You have reached the end of the collection.',
+        position: 'topRight',
+      });
     }
   } catch (error) {
     hideLoader();
@@ -93,7 +105,7 @@ loadBtn.addEventListener('click', async () => {
       message: 'Something went wrong! Try again later.',
       position: 'topRight',
     });
-    loadBtn.style.display = 'block'; // Якщо помилка, повертаємо кнопку
+    loadBtn.style.display = 'block';
   } finally {
     hideLoader(); // Ховаємо лоадер у будь-якому разі
   }
